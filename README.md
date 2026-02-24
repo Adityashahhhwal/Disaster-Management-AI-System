@@ -3,22 +3,25 @@
 🚨 **Emergency Disaster Response Navigator with AI Chatbot**
 ## 📁 Project Structure
 
-```
-├── index.html              # Main disaster management interface
-├── chatbot-popup.html      # Standalone chatbot    page (inline JS)
-├── script.js               # Main application logic
-├── styles.css              # Main application styles
-├── config.js               # Environment configuration
-├── mock-api.js             # Offline/fallback API responses (dev only)
-├── sw.js                   # Service worker stub (prevents 404s)
-├── favicon.ico             # Favicon placeholder
-├── netlify.toml            # Netlify deployment config
+```text
+├── src/                    # Next.js Source Directory
+│   ├── app/                # App Router (Pages & Layouts)
+│   ├── components/         # React UI Components
+│   └── lib/                # Utilities and Configuration
+├── public/                 # Static Assets
+├── backend/                # Chatbot API Server
+├── package.json            # Project dependencies & scripts
 ├── DEPLOYMENT.md           # Detailed deployment guide
 └── README.md               # This file
 ```
 
-A responsive disaster management system that provides real-time guidance, emergency resources, and AI-powered assistance for disaster preparedness and response.
+A responsive disaster management system built with Next.js, providing real-time guidance, emergency resources, and AI-powered assistance for disaster preparedness and response.
 
+## ✨ **New Features (v2)**
+- ✅ **Interactive Dashboard** - Quick overview of disaster alerts and system status
+- ✅ **System Alerts Page** - Filterable and interactive emergency alert cards
+- ✅ **Tools & Settings** - Manage offline capability and preferences
+- ✅ **Modern Tech Stack** - Migrated to Next.js, React 19, and Tailwind CSS v4
 ## 🤖 **AI-Powered Chatbot Features**
 
 ### Frontend Chatbot
@@ -59,25 +62,18 @@ The frontend is already deployed and works with intelligent mock responses.
    cd SIH-india2025
    ```
 
-2. **Run locally:**
-   - Easiest (Node):
+2. **Install dependencies:**
    ```bash
-   npm run serve
-   ```
-   - Or open `index.html` directly in a browser
-   - Or use a local server:
-   ```bash
-   # Using Python
-   python -m http.server 8000
-   
-   # Using Node.js
-   npx serve .
+   npm install
    ```
 
-3. **Access the application:**
-   - If using `npm run serve`: `http://localhost:3000`
-   - Python example: `http://localhost:8000`
-   - Chatbot page: `/chatbot-popup.html`
+3. **Run locally:**
+   ```bash
+   npm run dev
+   ```
+
+4. **Access the application:**
+   - Open your browser and navigate to `http://localhost:3000`
 
 ## 🔧 Configuration
 
@@ -129,19 +125,16 @@ TestSprite’s MCP server is already included as a dev dependency. To use it saf
 
 Need more detail? The full MCP setup guide lives at [docs.testsprite.com](https://docs.testsprite.com/).
 
-## 📁 Project Structure
+## 📁 Project Structure Detailed
 
-```
+```text
 📦 SIH-india2025/
-├── 🌐 index.html              # Main disaster management app
-├── 💬 chatbot-popup.html      # Standalone chatbot page
-├── 📜 script.js               # Main application logic
-├── 🎨 styles.css              # Main application styles
-├── ⚙️ config.js               # Environment configuration
-├── 🔄 mock-api.js             # Offline/fallback API responses (dev only)
-├── 🧭 sw.js                   # No-op service worker
-├── 🖼️ favicon.ico             # Favicon
-├── 🚀 netlify.toml            # Netlify deployment config
+├── 🌐 src/app/                # Next.js Pages (Dashboard, Alerts, Tools)
+├── 🧩 src/components/         # Reusable React components (shadcn/ui)
+├── 📜 src/lib/                # Utility functions and API clients
+├── 🎨 src/styles/             # Global CSS and Tailwind setup
+├── 🖼️ public/                 # Static assets (images, icons, etc.)
+├── 🚀 next.config.ts          # Next.js configuration
 ├── 📚 DEPLOYMENT.md           # Frontend deployment guide
 ├── 🛠️ DEPLOY-BACKEND-NOW.md   # Backend deployment guide
 ├── 📖 README.md               # Project documentation
