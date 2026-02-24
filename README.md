@@ -5,7 +5,7 @@
 
 ```
 ├── index.html              # Main disaster management interface
-├── chatbot-popup.html      # Standalone chatbot page (inline JS)
+├── chatbot-popup.html      # Standalone chatbot    page (inline JS)
 ├── script.js               # Main application logic
 ├── styles.css              # Main application styles
 ├── config.js               # Environment configuration
