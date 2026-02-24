@@ -20,7 +20,7 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "SIH-India 2025: Disaster Management",
+  title: "Disaster Management System",
   description: "AI-Powered Disaster Response & Preparedness System",
 };
 

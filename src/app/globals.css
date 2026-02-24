@@ -42,7 +42,7 @@
   --radius: 0.625rem;
 
   /* Light Mode (Oceanic Teal Palette) */
-  --background: #ebf4f6;
+  --background: #beb7b7;
   --bg-image: none;
 
   --foreground: #0f172a;
@@ -68,17 +68,17 @@
   --muted-foreground: #475569;
 
   /* Accent */
-  --accent: #088395;
-  --accent-foreground: #ebf4f6;
+  --accent: #1a1b1b4d;
+  --accent-foreground: #181a1b;
 
   /* Destructive */
   --destructive: #ef4444;
   --destructive-foreground: #ffffff;
 
   /* Borders & Inputs */
-  --border: #7ab2b2;
-  --input: #7ab2b2;
-  --ring: #088395;
+  --border: #053f3f;
+  --input: #052e2e;
+  --ring: #021215;
 
   /* Charts */
   --chart-1: #09637e;
