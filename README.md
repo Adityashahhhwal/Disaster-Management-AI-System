@@ -18,10 +18,13 @@
 A responsive disaster management system built with Next.js, providing real-time guidance, emergency resources, and AI-powered assistance for disaster preparedness and response.
 
 ## ✨ **New Features (v2)**
-- ✅ **Interactive Dashboard** - Quick overview of disaster alerts and system status
-- ✅ **System Alerts Page** - Filterable and interactive emergency alert cards
-- ✅ **Tools & Settings** - Manage offline capability and preferences
-- ✅ **Modern Tech Stack** - Migrated to Next.js, React 19, and Tailwind CSS v4
+- ✅ **Interactive Dashboard** - Quick overview of disaster alerts and system status (`/monitor`)
+- ✅ **System Alerts Page** - Filterable and interactive emergency alert cards (`/alerts`)
+- ✅ **Tools & Settings** - Manage offline capability and preferences (`/tools`)
+- ✅ **Preparation & Recovery Modules** - Dedicated routes for disaster readiness (`/prepare`, `/recover`, `/respond`)
+- ✅ **Floating Chat Widget** - Persistent chat window on all pages powered by an AI chatbot.
+- ✅ **Modern Tech Stack** - Migrated to Next.js (App Router), React 19, and Tailwind CSS v4 with Shadcn UI.
+- ✅ **Theming Support** - Dark, Light, and System modes with a robust `ThemeProvider`.
 ## 🤖 **AI-Powered Chatbot Features**
 
 ### Frontend Chatbot
@@ -30,13 +33,13 @@ A responsive disaster management system built with Next.js, providing real-time 
 - ✅ **Multi-Disaster Support** - Earthquakes, floods, fires, cyclones, etc.
 - ✅ **Emergency Contacts** - India-specific emergency numbers
 
-### Backend API (Optional)
-- � **OpenAI Integration** - Real AI responses via OpenRouter
-- � **GPT-5 Model** - Latest AI technology for emergency guidance
-- � **Context Memory** - Remembers conversation history
-- � **Location-Aware** - Tailored advice based on user location
-- 🔥 **MongoDB Storage** - Message history and user data
-- 🔥 **Fallback System** - Automatic mock responses if AI fails
+### Backend API (Express.js)
+- 🧠 **OpenAI Integration** - Real AI responses via OpenRouter
+- 🚀 **GPT Model** - Advanced language model support
+- 🗄️ **MongoDB Storage** - Message history, real-time alerts, disaster data, user tracking, and resource management.
+- 📡 **RESTful Routes** - APIs for Chat, Alerts, Disasters, Stats, Reports, and Resources.
+- �️ **Security Features** - Rate limiting, strict CORS policies, and Helmet protections.
+- 🧩 **Fallback System** - Automatic mock responses if AI or database fails.
 
 ## 🚀 Live Demo
 
@@ -129,22 +132,29 @@ Need more detail? The full MCP setup guide lives at [docs.testsprite.com](https:
 
 ```text
 📦 SIH-india2025/
-├── 🌐 src/app/                # Next.js Pages (Dashboard, Alerts, Tools)
-├── 🧩 src/components/         # Reusable React components (shadcn/ui)
-├── 📜 src/lib/                # Utility functions and API clients
-├── 🎨 src/styles/             # Global CSS and Tailwind setup
+├── 🌐 src/app/                # Next.js Pages & App Router
+│   ├── (dashboard)/           # Dashboard routes (/chat, /monitor, /prepare, /recover, /respond, /tools)
+│   ├── api/                   # Local API proxies (alerts, chat, disasters, resources, stats)
+│   ├── layout.tsx             # Root layout with Providers, Navbar, ChatWidget, and MobileEmergencyBar
+│   └── page.tsx               # Landing page with Hero section
+├── 🧩 src/components/         # Reusable React components
+│   ├── chat/                  # Chatbot UI components
+│   ├── dashboard/             # Specific dashboard views
+│   ├── layout/                # Headers, Navbars, and Offline indicators
+│   └── ui/                    # Base components (shadcn/ui primitives)
+├── 📜 src/lib/                # Utility functions, DB helpers, and API clients
+├── 🎨 src/styles/             # Global CSS and Tailwind properties
 ├── 🖼️ public/                 # Static assets (images, icons, etc.)
 ├── 🚀 next.config.ts          # Next.js configuration
 ├── 📚 DEPLOYMENT.md           # Frontend deployment guide
 ├── 🛠️ DEPLOY-BACKEND-NOW.md   # Backend deployment guide
 ├── 📖 README.md               # Project documentation
-└── 🖥️ backend/                # Chatbot API server
-   ├── index.js               # Express server
-   ├── package.json           # Dependencies
-   ├── .env.example           # Example env file
-   ├── controllers/           # API controllers
-   ├── models/                # Database models
-   └── routes/                # API routes
+└── 🖥️ backend/                # Chatbot API Server (Express.js)
+    ├── index.js               # Entry point (Express server setup, ratelimits, Pino logging)
+    ├── package.json           # Dependencies
+    ├── controllers/           # API handlers (alerts, chatbot.message.ai, disasters, reports, resources, stats)
+    ├── models/                # Mongoose models (alert, bot, disaster, report, resource, user)
+    └── routes/                # Express routes mapping
 ```
 
 ## 🌐 Supported Platforms
