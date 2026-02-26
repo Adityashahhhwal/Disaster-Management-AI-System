@@ -75,6 +75,7 @@ export default function DisasterMap() {
     const displayDisasters = disasters && disasters.length > 0 ? disasters : fallbackDisasters;
 
     useEffect(() => {
+        // eslint-disable-next-line react-hooks/set-state-in-effect
         setIsMounted(true);
     }, []);
 

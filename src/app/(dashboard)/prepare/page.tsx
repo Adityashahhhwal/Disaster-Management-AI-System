@@ -62,7 +62,7 @@ export default function PreparePage() {
                 <div>
                     <h3 className="font-semibold text-lg">Did you know?</h3>
                     <p className="text-muted-foreground mt-1">
-                        Setting up a "Family Meeting Point" is crucial. In a disaster, communication networks often fail. Agree on a physical location (like a park or a specific landmark) where your family will reunite if separated.
+                        Setting up a &quot;Family Meeting Point&quot; is crucial. In a disaster, communication networks often fail. Agree on a physical location (like a park or a specific landmark) where your family will reunite if separated.
                     </p>
                 </div>
             </div>

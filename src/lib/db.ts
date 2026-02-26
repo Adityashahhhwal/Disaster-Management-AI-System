@@ -28,7 +28,9 @@ export const dbPromise = openDB<DisasterDB>("sih-disaster-db", 1, {
     },
 });
 
-export async function saveReportOffline(report: any) {
+type OfflineReport = { content: string; location: { lat: number; lng: number } };
+
+export async function saveReportOffline(report: OfflineReport) {
     const db = await dbPromise;
     await db.put("reports", { ...report, synced: false, id: crypto.randomUUID() });
 }
