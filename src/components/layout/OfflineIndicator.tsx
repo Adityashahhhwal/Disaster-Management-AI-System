@@ -2,11 +2,11 @@
 
 import { useEffect, useState } from "react";
 import { WifiOff } from "lucide-react";
-import { cn } from "@/lib/utils";
+
 import { useAppStore } from "@/store/use-app-store";
 
 export function OfflineIndicator() {
-    const { isOffline, setOffline } = useAppStore();
+    const { setOffline } = useAppStore();
     const [show, setShow] = useState(false);
 
     useEffect(() => {

@@ -1,6 +1,6 @@
-import Link from "next/link";
+
 import { Button } from "@/components/ui/button";
-import { AlertTriangle, Phone, MapPin } from "lucide-react";
+import { AlertTriangle, MapPin } from "lucide-react";
 
 export function MobileEmergencyBar() {
     return (

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Check, Circle } from "lucide-react";
+import { Check } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 interface ChecklistItemProps {
@@ -11,7 +11,7 @@ interface ChecklistItemProps {
     isCompleted?: boolean;
 }
 
-export function ChecklistItem({ id, label, subtext, isCompleted = false }: ChecklistItemProps) {
+export function ChecklistItem({ label, subtext, isCompleted = false }: Omit<ChecklistItemProps, 'id'> & { id?: string }) {
     const [checked, setChecked] = useState(isCompleted);
 
     return (

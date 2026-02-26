@@ -13,7 +13,6 @@ import {
     Settings,
     LogOut,
     Menu,
-    X
 } from "lucide-react";
 import { useState } from "react";
 import { Sheet, SheetContent, SheetTrigger, SheetTitle, SheetDescription } from "@/components/ui/sheet";
@@ -117,6 +116,7 @@ export function Sidebar() {
     return (
         <>
             {DesktopSidebar}
+            {MobileSidebar}
         </>
     );
 }

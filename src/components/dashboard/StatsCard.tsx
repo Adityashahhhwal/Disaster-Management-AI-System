@@ -11,7 +11,7 @@ interface StatsCardProps {
     status?: "default" | "critical" | "warning" | "success";
 }
 
-export function StatsCard({ title, value, subtext, icon: Icon, trend, status = "default" }: StatsCardProps) {
+export function StatsCard({ title, value, subtext, icon: Icon, status = "default" }: Omit<StatsCardProps, 'trend'> & { trend?: StatsCardProps['trend'] }) {
     return (
         <Card className={cn(
             "border-l-4 shadow-sm transition-all hover:shadow-md",
