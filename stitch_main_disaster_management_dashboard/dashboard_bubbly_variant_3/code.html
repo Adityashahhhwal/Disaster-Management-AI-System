@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Disaster Ops - Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#ec5b13",
+                        "background-light": "#f8f6f6",
+                        "background-dark": "#221610",
+                    },
+                    fontFamily: {
+                        "display": ["Public Sans", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.8rem", "xl": "1.5rem", "2xl": "2.5rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Public Sans', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        .dark .glass-card {
+            background: rgba(34, 22, 16, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .bubbly-shadow {
+            box-shadow: 0 10px 40px -10px rgba(0,0,0,0.05);
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen">
+<div class="flex h-screen overflow-hidden">
+<!-- Sidebar Navigation -->
+<aside class="w-72 shrink-0 border-r border-slate-200 dark:border-slate-800 flex flex-col p-6 bg-white dark:bg-zinc-900/50">
+<div class="flex items-center gap-3 px-2 mb-10">
+<div class="size-10 bg-primary rounded-xl flex items-center justify-center text-white">
+<span class="material-symbols-outlined text-2xl">emergency</span>
+</div>
+<h2 class="text-xl font-black tracking-tight uppercase">Ops Center</h2>
+</div>
+<nav class="flex flex-col gap-2 flex-1">
+<a class="flex items-center gap-4 px-4 py-3.5 rounded-xl bg-primary text-white font-semibold transition-all bubbly-shadow" href="#">
+<span class="material-symbols-outlined">grid_view</span>
+<span>Dashboard</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3.5 rounded-xl text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all" href="#">
+<span class="material-symbols-outlined">warning</span>
+<span>Incidents</span>
+<span class="ml-auto bg-primary/20 text-primary text-xs px-2 py-0.5 rounded-full">12</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3.5 rounded-xl text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all" href="#">
+<span class="material-symbols-outlined">local_shipping</span>
+<span>Resources</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3.5 rounded-xl text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all" href="#">
+<span class="material-symbols-outlined">map</span>
+<span>Safe Zones</span>
+</a>
+</nav>
+<div class="mt-auto pt-6 border-t border-slate-100 dark:border-slate-800">
+<a class="flex items-center gap-4 px-4 py-3.5 rounded-xl text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span>Settings</span>
+</a>
+<div class="mt-4 flex items-center gap-3 px-2">
+<div class="size-10 rounded-full bg-slate-200 dark:bg-slate-800 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="User profile picture" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBQhNYcKBnOa9_L3J-_wfMJgFdmvnrmi_hYejuSZSCDjUybbBz0z74OJgAzCPrpckhltuK9An54ozyJy8ZXE2lqvglHjbedYjv0AK1NtBrILUJpAJnwkFjnJROvqIJ09oJYll-eDCcxVwXI7cGTsfUmnm6LORHiecNI5yANrfVhmtVLyKaKCy1MyhFDcR2nDjC3XZgaGqcBUS7IPHhDNCQidGDhdRzfndt3tQeCDcBInd3KMWRm5YEHRCnjOGjUJfChcKpI04O2_kWJ"/>
+</div>
+<div>
+<p class="text-sm font-bold">Commander Jane</p>
+<p class="text-[10px] uppercase tracking-widest text-slate-400">Regional Lead</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 overflow-y-auto bg-[#f0f2f5] dark:bg-background-dark p-8">
+<!-- Top Header -->
+<header class="flex items-center justify-between mb-12">
+<div>
+<h1 class="text-4xl font-black tracking-tight mb-2">Command Overview</h1>
+<p class="text-slate-500 dark:text-slate-400 text-lg font-medium">Real-time status monitoring for Zone 7</p>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative group">
+<div class="absolute inset-y-0 left-4 flex items-center pointer-events-none text-slate-400">
+<span class="material-symbols-outlined">search</span>
+</div>
+<input class="pl-12 pr-6 py-3.5 w-80 bg-white dark:bg-zinc-900 border-none rounded-2xl bubbly-shadow focus:ring-2 focus:ring-primary/20 transition-all placeholder:text-slate-400" placeholder="Search coordinates, units..." type="text"/>
+</div>
+<button class="size-14 bg-white dark:bg-zinc-900 rounded-2xl flex items-center justify-center text-slate-600 dark:text-slate-300 bubbly-shadow hover:bg-slate-50 transition-all">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="size-14 bg-white dark:bg-zinc-900 rounded-2xl flex items-center justify-center text-slate-600 dark:text-slate-300 bubbly-shadow hover:bg-slate-50 transition-all">
+<span class="material-symbols-outlined">tune</span>
+</button>
+</div>
+</header>
+<!-- Quick Stats Grid -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+<div class="bg-white dark:bg-zinc-900 p-8 rounded-2xl bubbly-shadow border border-white/50 dark:border-zinc-800 flex flex-col gap-4">
+<div class="flex items-center justify-between">
+<div class="size-12 rounded-xl bg-red-50 dark:bg-red-500/10 flex items-center justify-center text-red-500">
+<span class="material-symbols-outlined">emergency_home</span>
+</div>
+<span class="text-red-500 font-bold bg-red-50 dark:bg-red-500/10 px-3 py-1 rounded-full text-xs">+12%</span>
+</div>
+<div>
+<p class="text-slate-500 dark:text-slate-400 font-semibold mb-1">Active Alerts</p>
+<h3 class="text-5xl font-black">12</h3>
+</div>
+</div>
+<div class="bg-white dark:bg-zinc-900 p-8 rounded-2xl bubbly-shadow border border-white/50 dark:border-zinc-800 flex flex-col gap-4">
+<div class="flex items-center justify-between">
+<div class="size-12 rounded-xl bg-blue-50 dark:bg-blue-500/10 flex items-center justify-center text-blue-500">
+<span class="material-symbols-outlined">group</span>
+</div>
+<span class="text-blue-500 font-bold bg-blue-50 dark:bg-blue-500/10 px-3 py-1 rounded-full text-xs">Steady</span>
+</div>
+<div>
+<p class="text-slate-500 dark:text-slate-400 font-semibold mb-1">Response Units</p>
+<h3 class="text-5xl font-black">48</h3>
+</div>
+</div>
+<div class="bg-white dark:bg-zinc-900 p-8 rounded-2xl bubbly-shadow border border-white/50 dark:border-zinc-800 flex flex-col gap-4">
+<div class="flex items-center justify-between">
+<div class="size-12 rounded-xl bg-emerald-50 dark:bg-emerald-500/10 flex items-center justify-center text-emerald-500">
+<span class="material-symbols-outlined">verified_user</span>
+</div>
+<span class="text-emerald-500 font-bold bg-emerald-50 dark:bg-emerald-500/10 px-3 py-1 rounded-full text-xs">+2</span>
+</div>
+<div>
+<p class="text-slate-500 dark:text-slate-400 font-semibold mb-1">Safe Zones</p>
+<h3 class="text-5xl font-black">124</h3>
+</div>
+</div>
+</div>
+<!-- Dashboard Content Layout -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+<!-- Map View (Large) -->
+<div class="lg:col-span-2 flex flex-col gap-6">
+<div class="bg-white dark:bg-zinc-900 rounded-4xl p-4 bubbly-shadow border border-white/50 dark:border-zinc-800 min-h-125 relative overflow-hidden">
+<div class="absolute top-8 left-8 z-10 flex gap-2">
+<button class="bg-white/90 dark:bg-zinc-900/90 backdrop-blur px-5 py-2.5 rounded-full font-bold text-sm bubbly-shadow border border-slate-200 dark:border-slate-800 flex items-center gap-2">
+<span class="size-2 rounded-full bg-red-500 animate-pulse"></span> Live Map
+                            </button>
+<button class="bg-white/90 dark:bg-zinc-900/90 backdrop-blur px-5 py-2.5 rounded-full font-bold text-sm bubbly-shadow border border-slate-200 dark:border-slate-800">
+                                Sat View
+                            </button>
+</div>
+<div class="absolute top-8 right-8 z-10 flex flex-col gap-2">
+<button class="size-10 bg-white/90 dark:bg-zinc-900/90 backdrop-blur rounded-full flex items-center justify-center bubbly-shadow">
+<span class="material-symbols-outlined">add</span>
+</button>
+<button class="size-10 bg-white/90 dark:bg-zinc-900/90 backdrop-blur rounded-full flex items-center justify-center bubbly-shadow">
+<span class="material-symbols-outlined">remove</span>
+</button>
+</div>
+<div class="w-full h-full rounded-3xl bg-slate-200 dark:bg-zinc-800 relative">
+<img class="w-full h-full object-cover rounded-3xl opacity-70" data-alt="Satellite imagery map of urban area" data-location="Los Angeles" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD9oRnzIRxw884RHfVeWGuPQB_aTqfjyVgCdR-NPi8K9p2n3pUJFyjnWrrYIiIVsy-55YmU20cz5ZVbxEZpMJfJtNj_5j-3HLUFfH090Q8NOX-G8J_UmXXiDMD_DO1yjIizWPzx0RhL71kDP1iWKahFnUiEfGIdZ-6cb4FWKr4OypYgXgWKdoTnJmjXO63FGsJbxpseMqqBmt33tMl3KJfgEBYmRbmI5a6eeJMGjP29xfeE-3PlkQMWtIBuTdeMPaI3SCGN8mq4t8UB"/>
+<!-- Simulated Map Pins -->
+<div class="absolute top-1/4 left-1/3 size-12 bg-red-500/20 rounded-full flex items-center justify-center animate-ping"></div>
+<div class="absolute top-1/4 left-1/3 size-6 bg-red-500 border-4 border-white dark:border-zinc-900 rounded-full bubbly-shadow"></div>
+<div class="absolute bottom-1/3 right-1/4 size-10 bg-blue-500 border-4 border-white dark:border-zinc-900 rounded-full bubbly-shadow flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-xs">local_shipping</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Active Incidents Panel -->
+<div class="lg:col-span-1 flex flex-col gap-6">
+<div class="bg-white dark:bg-zinc-900 rounded-4xl p-8 bubbly-shadow border border-white/50 dark:border-zinc-800 flex flex-col flex-1">
+<div class="flex items-center justify-between mb-8">
+<h2 class="text-2xl font-black">Critical Tasks</h2>
+<button class="text-primary font-bold text-sm">View all</button>
+</div>
+<div class="flex flex-col gap-4 overflow-y-auto">
+<!-- Task Card -->
+<div class="p-5 rounded-2xl bg-slate-50 dark:bg-zinc-800/50 border border-slate-100 dark:border-zinc-800 hover:border-primary/30 transition-all cursor-pointer group">
+<div class="flex items-start gap-4">
+<div class="size-10 bg-primary/10 text-primary rounded-xl flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined">flood</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-start mb-1">
+<h4 class="font-bold">Water Level Alert</h4>
+<span class="text-[10px] bg-red-100 dark:bg-red-500/20 text-red-600 dark:text-red-400 px-2 py-0.5 rounded-full font-black uppercase">Critical</span>
+</div>
+<p class="text-sm text-slate-500 dark:text-slate-400 leading-relaxed">Zone A-4 barrier breach detected. Deploy team 4 immediately.</p>
+<div class="mt-4 flex items-center gap-2">
+<div class="flex -space-x-2">
+<div class="size-6 rounded-full border-2 border-white dark:border-zinc-800 bg-slate-200 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Team member portrait" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDa6nIPdDZxOXX-Fvn9fd10jHEwpX-mw69jdLBqBFRkZyATAbH6xaZtZaa2g0TL0nVDW5WY3Ak2xkdu0jk9wL5eV9Cm_vCiL3XSkWTe5szpMYCYxYCboO2P0_1VCUO4rzgKeS1-2Fn8TBnzk1IC5a6o32MefXRucLLfS8xvYwCTFXfEHgi0FuoRqhXQuM4jBuvl2Qsaw4ZS1PlcnOztTJyIW0UxKYXcJXMN0a09A4tbTA3ljfKgXj9JXDZGqQJ0kH3P9iqq6BH7yDrn"/>
+</div>
+<div class="size-6 rounded-full border-2 border-white dark:border-zinc-800 bg-slate-200 overflow-hidden text-[8px] flex items-center justify-center text-slate-500 font-bold">+3</div>
+</div>
+<span class="text-xs text-slate-400 font-medium">4 mins ago</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Task Card 2 -->
+<div class="p-5 rounded-2xl bg-slate-50 dark:bg-zinc-800/50 border border-slate-100 dark:border-zinc-800 hover:border-primary/30 transition-all cursor-pointer group">
+<div class="flex items-start gap-4">
+<div class="size-10 bg-orange-100 dark:bg-orange-500/10 text-orange-600 rounded-xl flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined">electric_bolt</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-start mb-1">
+<h4 class="font-bold">Grid Maintenance</h4>
+<span class="text-[10px] bg-orange-100 dark:bg-orange-500/20 text-orange-600 dark:text-orange-400 px-2 py-0.5 rounded-full font-black uppercase">Medium</span>
+</div>
+<p class="text-sm text-slate-500 dark:text-slate-400 leading-relaxed">Backup generator startup at Safe Zone 12.</p>
+<div class="mt-4 flex items-center gap-2">
+<span class="text-xs text-slate-400 font-medium">12 mins ago</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Task Card 3 -->
+<div class="p-5 rounded-2xl bg-slate-50 dark:bg-zinc-800/50 border border-slate-100 dark:border-zinc-800 hover:border-primary/30 transition-all cursor-pointer group">
+<div class="flex items-start gap-4">
+<div class="size-10 bg-blue-100 dark:bg-blue-500/10 text-blue-600 rounded-xl flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined">health_and_safety</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-start mb-1">
+<h4 class="font-bold">Medical Resupply</h4>
+<span class="text-[10px] bg-blue-100 dark:bg-blue-500/20 text-blue-600 dark:text-blue-400 px-2 py-0.5 rounded-full font-black uppercase">Normal</span>
+</div>
+<p class="text-sm text-slate-500 dark:text-slate-400 leading-relaxed">Request for medical supplies at Station South.</p>
+<div class="mt-4 flex items-center gap-2">
+<span class="text-xs text-slate-400 font-medium">25 mins ago</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Unit Tracking Section -->
+<section class="mt-12">
+<div class="flex items-center justify-between mb-8">
+<h2 class="text-2xl font-black">Active Response Units</h2>
+<div class="flex gap-2">
+<button class="p-2 bg-white dark:bg-zinc-900 rounded-lg bubbly-shadow border border-slate-100 dark:border-zinc-800">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<button class="p-2 bg-white dark:bg-zinc-900 rounded-lg bubbly-shadow border border-slate-100 dark:border-zinc-800">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+<!-- Unit Card -->
+<div class="bg-white dark:bg-zinc-900 p-6 rounded-3xl bubbly-shadow border border-white/50 dark:border-zinc-800">
+<div class="flex items-center gap-4 mb-6">
+<div class="size-12 rounded-2xl bg-slate-100 dark:bg-zinc-800 flex items-center justify-center font-black text-primary">01</div>
+<div>
+<h4 class="font-bold">Alpha-Team</h4>
+<p class="text-xs text-emerald-500 font-bold flex items-center gap-1">
+<span class="size-1.5 rounded-full bg-emerald-500"></span> On Duty
+                                </p>
+</div>
+</div>
+<div class="space-y-3">
+<div class="w-full bg-slate-100 dark:bg-zinc-800 h-2 rounded-full overflow-hidden">
+<div class="bg-primary h-full w-[85%] rounded-full"></div>
+</div>
+<div class="flex justify-between text-xs font-bold text-slate-500">
+<span>Deployment Progress</span>
+<span>85%</span>
+</div>
+</div>
+</div>
+<!-- Unit Card 2 -->
+<div class="bg-white dark:bg-zinc-900 p-6 rounded-3xl bubbly-shadow border border-white/50 dark:border-zinc-800 opacity-60">
+<div class="flex items-center gap-4 mb-6">
+<div class="size-12 rounded-2xl bg-slate-100 dark:bg-zinc-800 flex items-center justify-center font-black text-slate-400">02</div>
+<div>
+<h4 class="font-bold">Bravo-Team</h4>
+<p class="text-xs text-slate-400 font-bold flex items-center gap-1">
+<span class="size-1.5 rounded-full bg-slate-300"></span> Standby
+                                </p>
+</div>
+</div>
+<div class="space-y-3">
+<div class="w-full bg-slate-100 dark:bg-zinc-800 h-2 rounded-full overflow-hidden">
+<div class="bg-slate-300 dark:bg-zinc-700 h-full w-[0%] rounded-full"></div>
+</div>
+<div class="flex justify-between text-xs font-bold text-slate-500">
+<span>Deployment Progress</span>
+<span>0%</span>
+</div>
+</div>
+</div>
+<!-- Unit Card 3 -->
+<div class="bg-white dark:bg-zinc-900 p-6 rounded-3xl bubbly-shadow border border-white/50 dark:border-zinc-800">
+<div class="flex items-center gap-4 mb-6">
+<div class="size-12 rounded-2xl bg-slate-100 dark:bg-zinc-800 flex items-center justify-center font-black text-primary">03</div>
+<div>
+<h4 class="font-bold">Rescue-1</h4>
+<p class="text-xs text-orange-500 font-bold flex items-center gap-1">
+<span class="size-1.5 rounded-full bg-orange-500 animate-pulse"></span> Responding
+                                </p>
+</div>
+</div>
+<div class="space-y-3">
+<div class="w-full bg-slate-100 dark:bg-zinc-800 h-2 rounded-full overflow-hidden">
+<div class="bg-primary h-full w-[45%] rounded-full"></div>
+</div>
+<div class="flex justify-between text-xs font-bold text-slate-500">
+<span>Deployment Progress</span>
+<span>45%</span>
+</div>
+</div>
+</div>
+<!-- Unit Card 4 -->
+<div class="bg-white dark:bg-zinc-900 p-6 rounded-3xl bubbly-shadow border border-white/50 dark:border-zinc-800">
+<div class="flex items-center gap-4 mb-6">
+<div class="size-12 rounded-2xl bg-slate-100 dark:bg-zinc-800 flex items-center justify-center font-black text-primary">04</div>
+<div>
+<h4 class="font-bold">Medical-4</h4>
+<p class="text-xs text-emerald-500 font-bold flex items-center gap-1">
+<span class="size-1.5 rounded-full bg-emerald-500"></span> On Duty
+                                </p>
+</div>
+</div>
+<div class="space-y-3">
+<div class="w-full bg-slate-100 dark:bg-zinc-800 h-2 rounded-full overflow-hidden">
+<div class="bg-primary h-full w-full rounded-full"></div>
+</div>
+<div class="flex justify-between text-xs font-bold text-slate-500">
+<span>Deployment Progress</span>
+<span>100%</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+</div>
+</body></html>

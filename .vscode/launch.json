@@ -1,0 +1,10 @@
+{
+    "configurations": [
+        {
+            "type": "chrome",
+            "name": "Next.js app",
+            "request": "launch",
+            "url": "http://127.0.0.1:3000"
+        }
+    ]
+}
