@@ -56,82 +56,20 @@
 html {
   background: var(--background);
   color-scheme: light;
-  --theme-transition-x: calc(100% - 4rem);
-  --theme-transition-y: 4rem;
 }
 
 html.dark {
   color-scheme: dark;
 }
 
-html.theme-transitioning *,
-html.theme-transitioning *::before,
-html.theme-transitioning *::after {
-  transition:
-    background-color 0.72s cubic-bezier(0.22, 1, 0.36, 1),
-    color 0.72s cubic-bezier(0.22, 1, 0.36, 1),
-    border-color 0.72s cubic-bezier(0.22, 1, 0.36, 1),
-    box-shadow 0.72s cubic-bezier(0.22, 1, 0.36, 1),
-    fill 0.72s cubic-bezier(0.22, 1, 0.36, 1),
-    stroke 0.72s cubic-bezier(0.22, 1, 0.36, 1),
-    backdrop-filter 0.72s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-::view-transition-old(root),
-::view-transition-new(root) {
-  animation-duration: 0.72s;
-  animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-::view-transition-old(root) {
-  animation-name: theme-fade-out;
-}
-
-::view-transition-new(root) {
-  animation-name: theme-reveal-in;
-  transform-origin: var(--theme-transition-x) var(--theme-transition-y);
-}
-
 body {
   min-height: 100vh;
-  background:
-    radial-gradient(circle at top left, var(--background-glow), transparent 24%),
-    linear-gradient(180deg, var(--background-sheen), transparent 18%),
-    var(--background);
+  background: transparent;
   color: var(--text-main);
   margin: 0;
   overflow-x: hidden;
   text-rendering: optimizeLegibility;
-}
-
-@keyframes theme-fade-out {
-  from {
-    opacity: 1;
-    filter: blur(0) saturate(1) brightness(1);
-    transform: scale(1);
-  }
-
-  to {
-    opacity: 0.68;
-    filter: blur(2px) saturate(0.97) brightness(0.98);
-    transform: scale(1.005);
-  }
-}
-
-@keyframes theme-reveal-in {
-  from {
-    opacity: 0.78;
-    clip-path: circle(0 at var(--theme-transition-x) var(--theme-transition-y));
-    filter: blur(4px) saturate(1.02) brightness(1.01);
-    transform: scale(0.995);
-  }
-
-  to {
-    opacity: 1;
-    clip-path: circle(140% at var(--theme-transition-x) var(--theme-transition-y));
-    filter: blur(0) saturate(1) brightness(1);
-    transform: scale(1);
-  }
+  transition: color 0.32s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 ::selection {
@@ -178,15 +116,24 @@ body {
     background: var(--bubble-base);
     border-color: var(--bubble-border);
     box-shadow: var(--bubble-shadow);
+    transition:
+      border-color 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+      box-shadow 0.35s cubic-bezier(0.22, 1, 0.36, 1);
   }
 
   .bubble-subtle {
     background: var(--bubble-subtle);
     border: 1px solid var(--bubble-border);
+    transition:
+      background-color 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+      border-color 0.35s cubic-bezier(0.22, 1, 0.36, 1);
   }
 
   .bubble-strong {
     background: var(--bubble-strong);
     border: 1px solid var(--bubble-border);
+    transition:
+      background-color 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+      border-color 0.35s cubic-bezier(0.22, 1, 0.36, 1);
   }
 }
