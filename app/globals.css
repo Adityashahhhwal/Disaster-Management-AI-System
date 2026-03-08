@@ -72,6 +72,10 @@ body {
   transition: color 0.32s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
+.theme-backdrop {
+  transition: opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
 ::selection {
   background: rgba(79, 140, 255, 0.35);
   color: var(--text-main);

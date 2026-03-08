@@ -1,5 +1,5 @@
 import { Panel } from "@/components/ui/panel";
-import { ThemeToggle } from "@/components/ui/theme-toggle";
+import { ThemeToggle } from "../ui/theme-toggle";
 
 type TopbarProps = {
   onMenuToggle?: () => void;

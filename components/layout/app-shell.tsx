@@ -6,18 +6,17 @@ import { useEffect, useState, type ReactNode } from "react";
 
 import { Sidebar } from "@/components/layout/sidebar";
 import { Topbar } from "@/components/layout/topbar";
-import { cn } from "@/lib/utils";
 
 export function AppShell({ children }: { children: ReactNode }) {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
-  const { resolvedTheme } = useTheme();
+  const { theme } = useTheme();
 
   useEffect(() => {
     setMounted(true);
   }, []);
 
-  const isDark = mounted ? resolvedTheme !== "light" : true;
+  const isDark = mounted ? theme !== "light" : true;
 
   useEffect(() => {
     document.body.style.overflow = isSidebarOpen ? "hidden" : "";
@@ -31,21 +30,17 @@ export function AppShell({ children }: { children: ReactNode }) {
     <div className="min-h-screen bg-transparent px-4 py-8 text-(--text-main) sm:px-6 xl:px-8">
       <div className="pointer-events-none fixed inset-0 -z-20 overflow-hidden">
         <div
-          className={cn(
-            "absolute inset-0 transition-opacity duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]",
-            isDark ? "opacity-0" : "opacity-100"
-          )}
+          className="theme-backdrop theme-backdrop-light absolute inset-0"
           style={{
+            opacity: isDark ? 0 : 1,
             background:
               "radial-gradient(circle at top left, rgba(79, 140, 255, 0.16), transparent 24%), linear-gradient(180deg, rgba(255, 255, 255, 0.8), transparent 18%), #b8c8dd"
           }}
         />
         <div
-          className={cn(
-            "absolute inset-0 transition-opacity duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]",
-            isDark ? "opacity-100" : "opacity-0"
-          )}
+          className="theme-backdrop theme-backdrop-dark absolute inset-0"
           style={{
+            opacity: isDark ? 1 : 0,
             background:
               "radial-gradient(circle at top left, rgba(79, 140, 255, 0.08), transparent 24%), linear-gradient(180deg, rgba(255, 255, 255, 0.015), transparent 18%), #0f1115"
           }}
