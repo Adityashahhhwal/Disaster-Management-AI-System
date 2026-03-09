@@ -20,11 +20,11 @@ export function Sidebar({ mobile = false, onNavigate }: SidebarProps) {
       >
         <Panel tone="surface" padding="lg" className={cn("space-y-8 overflow-hidden", mobile && "min-h-fit")}>
           <div className="space-y-3">
-            <p className="text-xs uppercase tracking-[0.24em] text-(--text-dim)">AI Evacuation Grid</p>
+            <p className="text-xs uppercase tracking-[0.24em] text-(--text-dim)">Disaster Response Grid</p>
             <div>
               <h1 className="text-xl font-semibold text-(--text-main)">National Command</h1>
               <p className="mt-2 text-sm leading-6 text-(--text-dim)">
-                Evacuation routing, shelter balancing, and live operational oversight.
+                Civilian intake, live rescue routing, and AI-assisted flood response oversight.
               </p>
             </div>
           </div>
@@ -51,12 +51,12 @@ export function Sidebar({ mobile = false, onNavigate }: SidebarProps) {
         <Panel tone="surface" className="space-y-4 overflow-hidden">
           <div>
             <p className="text-xs uppercase tracking-[0.24em] text-(--text-dim)">Current Status</p>
-            <p className="mt-2 text-sm text-(--text-main)">Monsoon flood cascade active</p>
+            <p className="mt-2 text-sm text-(--text-main)">Eastern flood cascade active</p>
           </div>
           <div className="space-y-3 text-sm text-(--text-dim)">
-            <p>14 sectors under watch</p>
-            <p>46 ground teams deployed</p>
-            <p>3 command approvals pending</p>
+            <p>3 flood zones under active watch</p>
+            <p>8 rescue teams and 3 medevac units deployed</p>
+            <p>18 minute evacuation window in corridor delta</p>
           </div>
         </Panel>
       </div>

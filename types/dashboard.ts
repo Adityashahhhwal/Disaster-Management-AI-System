@@ -1,5 +1,11 @@
 export type Tone = "primary" | "success" | "warning" | "danger";
 
+export type KeyMetric = {
+  label: string;
+  value: string;
+  tone?: Tone;
+};
+
 export type StatCardItem = {
   title: string;
   value: string;
@@ -38,4 +44,23 @@ export type HealthPoint = {
   name: string;
   connectivity: number;
   response: number;
+};
+
+export type ResponseAction = {
+  label: string;
+  hint: string;
+  status: string;
+  tone: "primary" | "success" | "danger";
+};
+
+export type StoryStep = {
+  label: string;
+  detail: string;
+};
+
+export type AiPriorityItem = {
+  label: string;
+  value: string;
+  detail: string;
+  tone: Tone;
 };

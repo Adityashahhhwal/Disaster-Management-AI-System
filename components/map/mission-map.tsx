@@ -20,12 +20,12 @@ export function MissionMap({
 
   return (
     <ExpandablePanel
-      eyebrow="Live Mission Map"
-      title="Evacuation corridors and risk overlay"
+      eyebrow="Live Map"
+      title="Eastern flood response overview"
       summaryItems={[
         { label: "Active layers", value: String(activeLayers).padStart(2, "0") },
-        { label: "Priority route", value: "11 min", tone: "primary" },
-        { label: "Prediction refresh", value: "28 sec" }
+        { label: "People stranded", value: "142", tone: "danger" },
+        { label: "Safe corridor", value: "Delta route", tone: "primary" }
       ]}
       defaultExpanded
       className="overflow-hidden"
@@ -64,8 +64,8 @@ export function MissionMap({
           transition={{ duration: 0.4 }}
           className="absolute left-[6%] top-[12%] max-w-55 rounded-[22px] border border-white/8 bg-[rgba(239,68,68,0.12)] px-4 py-3 sm:left-[12%] sm:top-[18%]"
         >
-          <div className="text-sm font-medium text-(--text-main)">Flood breach cluster</div>
-          <p className="mt-2 text-xs leading-5 text-(--text-dim)">Depth rising at 4.1 cm/min near the eastern canal edge.</p>
+          <div className="text-sm font-medium text-(--text-main)">AI flood projection</div>
+          <p className="mt-2 text-xs leading-5 text-(--text-dim)">Depth rising at 4.1 cm/min near the eastern canal edge. Vehicle access at risk.</p>
         </motion.div>
 
         <motion.div
@@ -74,16 +74,16 @@ export function MissionMap({
           transition={{ duration: 0.45, delay: 0.08 }}
           className="absolute right-[4%] top-[10%] max-w-55 rounded-[22px] border border-white/8 bg-[rgba(46,49,55,0.76)] p-4 backdrop-blur-sm sm:right-[7%] sm:top-[20%] dark:bg-[rgba(19,22,27,0.78)]"
         >
-          <p className="text-xs uppercase tracking-[0.24em] text-(--text-dim)">Priority Route</p>
+          <p className="text-xs uppercase tracking-[0.24em] text-(--text-dim)">AI Route Recommendation</p>
           <div className="mt-3 text-sm text-(--text-main)">Relief Camp Delta to Hospital North</div>
-          <p className="mt-2 text-xs leading-5 text-(--text-dim)">Travel time 11 min. Civilian density moderate. Two bridges verified open.</p>
+          <p className="mt-2 text-xs leading-5 text-(--text-dim)">Travel time 11 min. Congestion stable. Two bridges verified open for medevac.</p>
         </motion.div>
 
         <div className="absolute bottom-4 left-4 right-4 grid gap-4 md:grid-cols-3">
           {[
             ["Shelters online", "26 / 31"],
             ["Route confidence", "91%"],
-            ["Prediction refresh", "28 sec"]
+            ["Model refresh", "24 sec"]
           ].map(([label, value]) => (
             <div key={label} className="min-w-0 rounded-[22px] border border-white/8 bg-[rgba(46,49,55,0.7)] px-4 py-3 backdrop-blur-sm dark:bg-[rgba(19,22,27,0.72)]">
               <p className="text-xs uppercase tracking-[0.2em] text-(--text-dim)">{label}</p>

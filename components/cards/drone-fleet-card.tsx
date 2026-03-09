@@ -12,8 +12,8 @@ export function DroneFleetCard({
 
   return (
     <ExpandablePanel
-      eyebrow="Drone Fleet"
-      title="Autonomous aerial coverage"
+      eyebrow="Rescue Operations"
+      title="Aerial coordination"
       summaryItems={[
         { label: "Active drones", value: String(items.length).padStart(2, "0") },
         { label: "Average battery", value: `${averageBattery}%`, tone: averageBattery < 50 ? "warning" : "success" },

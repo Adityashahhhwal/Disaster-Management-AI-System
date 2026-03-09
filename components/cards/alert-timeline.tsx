@@ -17,8 +17,8 @@ export function AlertTimeline({
 
   return (
     <ExpandablePanel
-      eyebrow="Alert Timeline"
-      title="Operational escalations"
+      eyebrow="Live Incidents"
+      title="Rescue-critical updates"
       summaryItems={[
         { label: "Open alerts", value: String(items.length).padStart(2, "0") },
         { label: "Critical", value: String(criticalCount).padStart(2, "0"), tone: criticalCount > 0 ? "danger" : "default" },

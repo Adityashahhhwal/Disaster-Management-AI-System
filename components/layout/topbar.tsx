@@ -21,10 +21,13 @@ export function Topbar({ onMenuToggle }: TopbarProps) {
               Navigation
             </button>
           </div>
-          <p className="text-xs uppercase tracking-[0.28em] text-(--text-dim)">AI Disaster Evacuation Platform</p>
+          <p className="text-xs uppercase tracking-[0.28em] text-(--text-dim)">Emergency Response Control System</p>
           <h2 className="mt-3 max-w-4xl text-3xl font-semibold leading-tight text-(--text-main) md:text-4xl">
-            Map-first command view for live evacuation control
+            Detect, prioritize, and route rescue operations from one live map
           </h2>
+          <p className="mt-4 max-w-3xl text-sm leading-6 text-(--text-dim)">
+            Built for the first 30 minutes of a disaster event: find people at risk, keep corridors open, and show why the next move matters.
+          </p>
         </div>
 
         <div className="flex flex-wrap gap-4 text-sm text-(--text-dim)">

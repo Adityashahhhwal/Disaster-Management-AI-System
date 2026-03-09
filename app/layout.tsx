@@ -18,8 +18,8 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-  title: "AI Disaster Evacuation Platform",
-  description: "Operational command dashboard for evacuation, rescue coordination, and resource visibility."
+  title: "Emergency Response Control System",
+  description: "Map-first disaster response control system for SOS intake, rescue routing, and visible AI recommendations."
 };
 
 export default function RootLayout({
