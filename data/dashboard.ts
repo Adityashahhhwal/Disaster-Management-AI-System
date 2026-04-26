@@ -37,18 +37,21 @@ export const statCards: StatCardItem[] = [
 
 export const responseActions: ResponseAction[] = [
   {
+    id: "need-help",
     label: "I need help",
     hint: "Raise an SOS with your live location and nearest landmark.",
     status: "SOS intake active. The system should now ask for location, phone access, and number of people with you.",
     tone: "danger"
   },
   {
+    id: "safe",
     label: "I am safe",
     hint: "Update your status so rescue teams stop searching your zone.",
     status: "Safe status queued. Civilian search priority should drop and family notifications can be triggered.",
     tone: "success"
   },
   {
+    id: "map",
     label: "View live map",
     hint: "Open evacuation corridors, shelters, and hospital access routes.",
     status: "Live map mode selected. Show the nearest shelter, open route, and hospital access within one view.",

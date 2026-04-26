@@ -47,6 +47,7 @@ export type HealthPoint = {
 };
 
 export type ResponseAction = {
+  id: "need-help" | "safe" | "map";
   label: string;
   hint: string;
   status: string;

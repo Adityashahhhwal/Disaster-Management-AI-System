@@ -25,7 +25,7 @@ export default function Home() {
         ))}
       </section>
 
-      <section>
+      <section id="live-map">
         <MissionMap layers={mapLayers} />
       </section>
 

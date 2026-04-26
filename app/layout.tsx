@@ -3,6 +3,7 @@ import { Manrope, Space_Grotesk } from "next/font/google";
 import type { ReactNode } from "react";
 
 import { ThemeProvider } from "@/components/providers/theme-provider";
+import "leaflet/dist/leaflet.css";
 import "./globals.css";
 
 const manrope = Manrope({

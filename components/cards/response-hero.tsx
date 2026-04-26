@@ -3,21 +3,11 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
 
+import { CivilianEntryPanel } from "@/components/cards/civilian-entry-panel";
 import { Panel } from "@/components/ui/panel";
+import type { ResponseAction, StoryStep } from "@/types/dashboard";
 
-type ActionTone = "primary" | "success" | "danger";
-
-type ResponseAction = {
-  label: string;
-  hint: string;
-  status: string;
-  tone: ActionTone;
-};
-
-type StoryStep = {
-  label: string;
-  detail: string;
-};
+type ActionTone = ResponseAction["tone"];
 
 const actionToneClasses: Record<ActionTone, string> = {
   primary: "border-(--primary)/30 bg-(--primary)/12 text-(--text-main)",
@@ -32,7 +22,8 @@ export function ResponseHero({
   actions: ResponseAction[];
   steps: StoryStep[];
 }) {
-  const [selectedAction, setSelectedAction] = useState(actions[0]?.label ?? "");
+  const [selectedActionId, setSelectedActionId] = useState<ResponseAction["id"]>(actions[0]?.id ?? "need-help");
+  const selectedAction = actions.find((action) => action.id === selectedActionId) ?? actions[0];
 
   return (
     <motion.section initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }}>
@@ -52,12 +43,12 @@ export function ResponseHero({
                 <motion.button
                   key={action.label}
                   type="button"
-                  onClick={() => setSelectedAction(action.label)}
+                  onClick={() => setSelectedActionId(action.id)}
                   initial={{ opacity: 0, y: 14 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.32, delay: 0.06 * index }}
-                  className={`rounded-3xl border px-4 py-4 text-left transition-transform hover:-translate-y-0.5 ${actionToneClasses[action.tone]} ${selectedAction === action.label ? "ring-2 ring-(--ring)" : "opacity-85"}`}
-                  aria-pressed={selectedAction === action.label}
+                  className={`rounded-3xl border px-4 py-4 text-left transition-transform hover:-translate-y-0.5 ${actionToneClasses[action.tone]} ${selectedActionId === action.id ? "ring-2 ring-(--ring)" : "opacity-85"}`}
+                  aria-pressed={selectedActionId === action.id}
                 >
                   <span className="block text-sm font-semibold">{action.label}</span>
                   <span className="mt-2 block text-sm leading-6 text-(--text-dim)">{action.hint}</span>
@@ -65,12 +56,7 @@ export function ResponseHero({
               ))}
             </div>
 
-            <div className="bubble-subtle mt-4 rounded-[26px] p-4">
-              <p className="text-xs uppercase tracking-[0.2em] text-(--text-dim)">Selected Flow</p>
-              <p className="mt-2 text-sm leading-6 text-(--text-main)">
-                {actions.find((action) => action.label === selectedAction)?.status}
-              </p>
-            </div>
+            {selectedAction ? <CivilianEntryPanel selectedAction={selectedAction} /> : null}
           </div>
 
           <div className="bubble-subtle rounded-[28px] p-5">

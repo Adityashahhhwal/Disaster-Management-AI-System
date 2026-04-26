@@ -140,4 +140,169 @@ body {
       background-color 0.35s cubic-bezier(0.22, 1, 0.36, 1),
       border-color 0.35s cubic-bezier(0.22, 1, 0.36, 1);
   }
+
+  .mission-leaflet {
+    height: 100%;
+    width: 100%;
+    background: #0f1115;
+    font-family: var(--font-manrope), sans-serif;
+    z-index: 0;
+  }
+
+  .mission-leaflet .leaflet-tile {
+    filter: saturate(0.72) brightness(0.66) contrast(1.18) hue-rotate(178deg);
+  }
+
+  html:not(.dark) .mission-leaflet .leaflet-tile {
+    filter: saturate(0.8) brightness(0.92) contrast(1.05);
+  }
+
+  .mission-leaflet .leaflet-control-zoom,
+  .mission-leaflet .leaflet-control-layers {
+    overflow: hidden;
+    border: 1px solid var(--bubble-border);
+    border-radius: 16px;
+    background: rgba(19, 22, 27, 0.78);
+    box-shadow: 0 18px 44px rgba(0, 0, 0, 0.22);
+    backdrop-filter: blur(14px);
+  }
+
+  .mission-leaflet .leaflet-control-zoom a {
+    height: 34px;
+    width: 34px;
+    border: 0;
+    background: transparent;
+    color: var(--text-main);
+    line-height: 34px;
+  }
+
+  .mission-leaflet .leaflet-control-zoom a + a {
+    border-top: 1px solid var(--bubble-border);
+  }
+
+  .mission-leaflet .leaflet-control-zoom a:hover,
+  .mission-leaflet .leaflet-control-layers:hover {
+    background: rgba(255, 255, 255, 0.08);
+  }
+
+  .mission-leaflet .leaflet-control-layers-toggle {
+    width: 36px;
+    height: 36px;
+    background-size: 18px 18px;
+    filter: invert(1) opacity(0.86);
+  }
+
+  .mission-leaflet .leaflet-control-layers-expanded {
+    padding: 12px;
+    color: var(--text-main);
+  }
+
+  .mission-leaflet .leaflet-control-layers label {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    margin: 6px 0;
+    color: var(--text-main);
+    font-size: 0.75rem;
+  }
+
+  .mission-leaflet .leaflet-control-attribution {
+    border-top-left-radius: 12px;
+    background: rgba(19, 22, 27, 0.72);
+    color: var(--text-dim);
+  }
+
+  .mission-leaflet .leaflet-control-attribution a {
+    color: var(--primary);
+  }
+
+  .mission-leaflet .leaflet-popup-content-wrapper,
+  .mission-leaflet .leaflet-popup-tip {
+    border: 1px solid var(--bubble-border);
+    background: rgba(19, 22, 27, 0.92);
+    color: var(--text-main);
+    box-shadow: 0 18px 44px rgba(0, 0, 0, 0.34);
+    backdrop-filter: blur(14px);
+  }
+
+  .mission-leaflet .leaflet-popup-content {
+    margin: 12px 14px;
+  }
+
+  .mission-popup {
+    display: grid;
+    max-width: 220px;
+    gap: 6px;
+  }
+
+  .mission-popup strong {
+    color: var(--text-main);
+    font-size: 0.9rem;
+  }
+
+  .mission-popup span {
+    color: var(--text-dim);
+    font-size: 0.78rem;
+    line-height: 1.45;
+  }
+
+  .mission-popup__role {
+    color: var(--primary);
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    margin: 0;
+    text-transform: uppercase;
+  }
+
+  .mission-marker {
+    position: relative;
+  }
+
+  .mission-marker__pulse,
+  .mission-marker__pin {
+    position: absolute;
+    inset: 50% auto auto 50%;
+    border-radius: 9999px;
+    transform: translate(-50%, -50%);
+  }
+
+  .mission-marker__pulse {
+    height: 34px;
+    width: 34px;
+    background: color-mix(in srgb, var(--marker-color) 24%, transparent);
+    animation: mission-marker-pulse 1.8s ease-out infinite;
+  }
+
+  .mission-marker__pin {
+    height: 16px;
+    width: 16px;
+    border: 2px solid rgba(255, 255, 255, 0.9);
+    background: var(--marker-color);
+    box-shadow: 0 0 0 5px color-mix(in srgb, var(--marker-color) 22%, transparent), 0 12px 24px rgba(0, 0, 0, 0.32);
+  }
+
+  .mission-marker--primary {
+    --marker-color: var(--primary);
+  }
+
+  .mission-marker--success {
+    --marker-color: var(--success);
+  }
+
+  .mission-marker--danger {
+    --marker-color: var(--danger);
+  }
+}
+
+@keyframes mission-marker-pulse {
+  0% {
+    opacity: 0.72;
+    transform: translate(-50%, -50%) scale(0.62);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(1.25);
+  }
 }

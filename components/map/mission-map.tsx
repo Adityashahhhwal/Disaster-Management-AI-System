@@ -1,9 +1,22 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { motion } from "framer-motion";
 
 import { ExpandablePanel } from "@/components/ui/expandable-panel";
 import type { MapLayerItem } from "@/types/dashboard";
+
+const LeafletMissionMap = dynamic(
+  () => import("./leaflet-mission-map").then((module) => module.LeafletMissionMap),
+  {
+    ssr: false,
+    loading: () => (
+      <div className="grid h-full w-full place-items-center bg-[rgba(15,17,21,0.72)] text-sm text-(--text-dim)">
+        Loading live map...
+      </div>
+    )
+  }
+);
 
 export function MissionMap({
   layers
@@ -49,20 +62,14 @@ export function MissionMap({
         </div>
       </div>
 
-      <div className="grid-noise bubble-subtle relative aspect-16/10 min-h-90 w-full overflow-hidden rounded-4xl bg-[linear-gradient(180deg,rgba(255,255,255,0.05),rgba(0,0,0,0.10))] sm:min-h-105 xl:min-h-130">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_65%_28%,rgba(79,140,255,0.14),transparent_16%),radial-gradient(circle_at_28%_68%,rgba(239,68,68,0.18),transparent_18%),radial-gradient(circle_at_74%_70%,rgba(34,197,94,0.14),transparent_16%)]" />
-
-        <svg className="absolute inset-0 h-full w-full" viewBox="0 0 1000 600" fill="none" preserveAspectRatio="none">
-          <path d="M120 470C210 390 310 360 390 320C510 259 585 116 830 148" stroke="rgba(79,140,255,0.9)" strokeDasharray="10 10" strokeLinecap="round" strokeWidth="6" />
-          <path d="M90 240C220 275 268 245 408 212C550 179 678 292 878 242" stroke="rgba(245,158,11,0.9)" strokeDasharray="14 12" strokeLinecap="round" strokeWidth="5" />
-          <path d="M330 110C430 134 480 203 560 242C650 286 740 316 850 396" stroke="rgba(34,197,94,0.72)" strokeLinecap="round" strokeWidth="4" />
-        </svg>
+      <div className="bubble-subtle relative aspect-16/10 min-h-90 w-full overflow-hidden rounded-4xl bg-[#0f1115] sm:min-h-105 xl:min-h-130">
+        <LeafletMissionMap />
 
         <motion.div
           initial={{ opacity: 0, scale: 0.96 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.4 }}
-          className="absolute left-[6%] top-[12%] max-w-55 rounded-[22px] border border-white/8 bg-[rgba(239,68,68,0.12)] px-4 py-3 sm:left-[12%] sm:top-[18%]"
+          className="pointer-events-none absolute left-4 top-[4.25rem] max-w-55 rounded-[22px] border border-white/8 bg-[rgba(239,68,68,0.16)] px-4 py-3 shadow-[0_18px_44px_rgba(0,0,0,0.28)] backdrop-blur-md sm:left-6 sm:top-6"
         >
           <div className="text-sm font-medium text-(--text-main)">AI flood projection</div>
           <p className="mt-2 text-xs leading-5 text-(--text-dim)">Depth rising at 4.1 cm/min near the eastern canal edge. Vehicle access at risk.</p>
@@ -72,14 +79,14 @@ export function MissionMap({
           initial={{ opacity: 0, x: 24 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.45, delay: 0.08 }}
-          className="absolute right-[4%] top-[10%] max-w-55 rounded-[22px] border border-white/8 bg-[rgba(46,49,55,0.76)] p-4 backdrop-blur-sm sm:right-[7%] sm:top-[20%] dark:bg-[rgba(19,22,27,0.78)]"
+          className="pointer-events-none absolute right-4 top-[4.25rem] max-w-55 rounded-[22px] border border-white/8 bg-[rgba(46,49,55,0.76)] p-4 shadow-[0_18px_44px_rgba(0,0,0,0.24)] backdrop-blur-md sm:right-[4.5rem] sm:top-6 dark:bg-[rgba(19,22,27,0.78)]"
         >
           <p className="text-xs uppercase tracking-[0.24em] text-(--text-dim)">AI Route Recommendation</p>
           <div className="mt-3 text-sm text-(--text-main)">Relief Camp Delta to Hospital North</div>
           <p className="mt-2 text-xs leading-5 text-(--text-dim)">Travel time 11 min. Congestion stable. Two bridges verified open for medevac.</p>
         </motion.div>
 
-        <div className="absolute bottom-4 left-4 right-4 grid gap-4 md:grid-cols-3">
+        <div className="pointer-events-none absolute bottom-4 left-4 right-4 grid gap-4 md:grid-cols-3">
           {[
             ["Shelters online", "26 / 31"],
             ["Route confidence", "91%"],
