@@ -1,4 +1,9 @@
+"use client";
+
 import type { ReactNode } from "react";
+import { useId, useState } from "react";
+
+import { ChevronDown } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 
@@ -35,9 +40,13 @@ export function ExpandablePanel({
   title,
   summaryItems,
   children,
+  defaultExpanded = true,
   className,
   bodyClassName
 }: ExpandablePanelProps) {
+  const [isExpanded, setIsExpanded] = useState(defaultExpanded);
+  const panelBodyId = useId();
+
   return (
     <Panel className={cn("overflow-hidden", className)}>
       <div className="flex flex-col gap-5">
@@ -46,6 +55,17 @@ export function ExpandablePanel({
             <p className="text-xs uppercase tracking-[0.24em] text-(--text-dim)">{eyebrow}</p>
             <h2 className="mt-2 text-2xl font-semibold text-(--text-main)">{title}</h2>
           </div>
+
+          <button
+            type="button"
+            aria-label={isExpanded ? "Collapse panel" : "Expand panel"}
+            aria-controls={panelBodyId}
+            aria-expanded={isExpanded}
+            onClick={() => setIsExpanded((current) => !current)}
+            className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl border border-black/8 bg-black/4 text-(--text-main) transition hover:bg-black/7 dark:border-white/6 dark:bg-white/5 dark:hover:bg-white/10"
+          >
+            <ChevronDown className={cn("h-5 w-5 transition-transform", isExpanded && "rotate-180")} />
+          </button>
         </div>
 
         <div className="grid grid-cols-2 gap-3 2xl:grid-cols-3">
@@ -64,7 +84,11 @@ export function ExpandablePanel({
         </div>
       </div>
 
-      <div className={cn("mt-8", bodyClassName)}>{children}</div>
+      {isExpanded ? (
+        <div id={panelBodyId} className={cn("mt-8", bodyClassName)}>
+          {children}
+        </div>
+      ) : null}
     </Panel>
   );
 }

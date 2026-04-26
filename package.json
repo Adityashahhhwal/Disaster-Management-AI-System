@@ -6,7 +6,11 @@
     "dev": "node ./node_modules/next/dist/bin/next dev",
     "build": "node ./node_modules/next/dist/bin/next build",
     "start": "node ./node_modules/next/dist/bin/next start",
-    "typecheck": "node ./node_modules/typescript/bin/tsc --noEmit"
+    "typecheck": "node ./node_modules/typescript/bin/tsc --noEmit",
+    "lint": "eslint app components config data lib types eslint.config.mjs next.config.ts postcss.config.mjs vitest.config.ts vitest.setup.ts --max-warnings=0",
+    "test": "vitest run",
+    "backend:dev": "python -m uvicorn backend.app.main:app --reload --port 8000",
+    "backend:test": "python -m pytest backend/tests"
   },
   "dependencies": {
     "@types/leaflet": "^1.9.21",
@@ -25,10 +29,16 @@
   },
   "devDependencies": {
     "@tailwindcss/postcss": "latest",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.2",
     "@types/node": "latest",
     "@types/react": "latest",
     "@types/react-dom": "latest",
+    "eslint": "^9.39.4",
+    "eslint-config-next": "16.1.6",
+    "jsdom": "^29.0.2",
     "tailwindcss": "latest",
-    "typescript": "latest"
+    "typescript": "latest",
+    "vitest": "^4.1.5"
   }
 }

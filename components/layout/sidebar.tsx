@@ -1,4 +1,7 @@
+"use client";
+
 import type { MouseEventHandler } from "react";
+import { useEffect, useState } from "react";
 
 import { primaryNavigation } from "@/config/navigation";
 import { Panel } from "@/components/ui/panel";
@@ -6,10 +9,25 @@ import { cn } from "@/lib/utils";
 
 type SidebarProps = {
   mobile?: boolean;
-  onNavigate?: MouseEventHandler<HTMLButtonElement>;
+  onNavigate?: MouseEventHandler<HTMLAnchorElement>;
 };
 
 export function Sidebar({ mobile = false, onNavigate }: SidebarProps) {
+  const [activeHref, setActiveHref] = useState(primaryNavigation[0]?.href ?? "#command-center");
+
+  useEffect(() => {
+    const updateActiveHref = () => {
+      setActiveHref(window.location.hash || "#command-center");
+    };
+
+    updateActiveHref();
+    window.addEventListener("hashchange", updateActiveHref);
+
+    return () => {
+      window.removeEventListener("hashchange", updateActiveHref);
+    };
+  }, []);
+
   return (
     <aside className={cn(mobile ? "block h-full w-full" : "hidden w-64 shrink-0 xl:block")}>
       <div
@@ -31,19 +49,20 @@ export function Sidebar({ mobile = false, onNavigate }: SidebarProps) {
 
           <nav className="space-y-2">
             {primaryNavigation.map((item) => (
-              <button
+              <a
                 key={item.label}
+                href={item.href}
                 onClick={onNavigate}
                 className={cn(
                   "flex w-full items-center justify-between rounded-2xl px-4 py-3 text-left text-sm transition-colors",
-                  item.active
+                  activeHref === item.href
                     ? "bg-black/5 text-(--text-main) dark:bg-white/5"
                     : "text-(--text-dim) hover:bg-black/5 hover:text-(--text-main) dark:hover:bg-white/5"
                 )}
               >
                 <span className="truncate">{item.label}</span>
-                <span className={cn("h-2 w-2 rounded-full", item.active ? "bg-(--primary)" : "bg-transparent")} />
-              </button>
+                <span className={cn("h-2 w-2 rounded-full", activeHref === item.href ? "bg-(--primary)" : "bg-transparent")} />
+              </a>
             ))}
           </nav>
         </Panel>

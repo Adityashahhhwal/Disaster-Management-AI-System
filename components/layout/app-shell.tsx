@@ -9,14 +9,8 @@ import { Topbar } from "@/components/layout/topbar";
 
 export function AppShell({ children }: { children: ReactNode }) {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const [mounted, setMounted] = useState(false);
   const { theme } = useTheme();
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  const isDark = mounted ? theme !== "light" : true;
+  const isDark = theme !== "light";
 
   useEffect(() => {
     document.body.style.overflow = isSidebarOpen ? "hidden" : "";

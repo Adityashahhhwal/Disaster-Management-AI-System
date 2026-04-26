@@ -22,7 +22,7 @@ export function ThemeToggle({ className }: { className?: string }) {
     };
   }, []);
 
-  const isDark = mounted ? theme !== "light" : true;
+  const isDark = mounted ? theme === "dark" : false;
 
   const toggleTheme = () => {
     setIsRotating(true);

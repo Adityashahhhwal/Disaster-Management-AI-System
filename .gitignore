@@ -5,3 +5,6 @@ dist
 coverage
 *.log
 *.tsbuildinfo
+__pycache__/
+.pytest_cache/
+*.py[cod]

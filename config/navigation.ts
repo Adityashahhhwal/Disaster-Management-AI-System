@@ -1,8 +1,8 @@
 export const primaryNavigation = [
-  { label: "Command Center", active: true },
-  { label: "Live Map", active: false },
-  { label: "Victim Monitoring", active: false },
-  { label: "Resources", active: false },
-  { label: "Rescue Teams", active: false },
-  { label: "Settings", active: false }
+  { label: "Command Center", href: "#command-center" },
+  { label: "Live Map", href: "#live-map" },
+  { label: "Victim Monitoring", href: "#victim-monitoring" },
+  { label: "Resources", href: "#resources" },
+  { label: "Rescue Teams", href: "#rescue-teams" },
+  { label: "Settings", href: "#settings" }
 ];

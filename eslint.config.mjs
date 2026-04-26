@@ -1,0 +1,19 @@
+import nextVitals from "eslint-config-next/core-web-vitals";
+import nextTypeScript from "eslint-config-next/typescript";
+
+const eslintConfig = [
+  ...nextVitals,
+  ...nextTypeScript,
+  {
+    ignores: [
+      ".next/**",
+      "coverage/**",
+      "dist/**",
+      "node_modules/**",
+      "out/**",
+      "stitch_main_disaster_management_dashboard/**"
+    ]
+  }
+];
+
+export default eslintConfig;
